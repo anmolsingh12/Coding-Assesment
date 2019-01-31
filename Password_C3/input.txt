@@ -1,0 +1,8 @@
+16
+8
+0-5
+all
+@,#,$,*
+2
+1
+Password123 password123

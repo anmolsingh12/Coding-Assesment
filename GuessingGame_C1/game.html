@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link src="main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="main.js"></script>
+    <title>Guessing Game</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to Guessing Game</h1>
+        </div>
+
+        <div class="container">
+            <a class="btn btn-danger" onclick="generate()">Start Game</a><br>
+                <input type="text" hidden id="num">
+            <br>
+            <hr>
+            <div class="game">
+                <h4>No. of Tries Used : </h4><p id="tries"></p><br>
+                    <input class="form-control" type="text" id="inp" placeholder="Enter Your Guess Here...">
+                <br><a class="btn btn-primary" onclick="submitValue()">Guess</a>
+
+                <h3>Result : </h3>
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        var tries = 0;
+        function submitValue()
+        {   var result = document.getElementById("num").value;
+            
+            var number=document.getElementById("inp").value;  
+            
+            var diff = Math.abs(result -number);
+            console.log(diff);
+
+            if(diff == 0)
+            {
+                document.getElementById('result').innerHTML="You Have Won The Game.. Correct Answer is : "+result;
+                tries++;
+            }
+
+            else if(diff <= 10 && result > number)
+            {
+                document.getElementById('result').innerHTML="You Are Very Close.. enter a bit Greater Integer to win.";
+                tries++;
+            } 
+
+            else if(diff <= 10 && result < number)
+            {
+                document.getElementById('result').innerHTML="You Are Very Close.. enter a bit Smaller Integer to win.";
+                tries++;
+            }
+
+            else if(diff > 10 && result > number)
+            {
+                document.getElementById('result').innerHTML="You Are Not Even Close.. enter a Larger Integer to win.";
+                tries++;
+            }
+
+            else if(diff > 10 && result < number)
+            {
+                document.getElementById('result').innerHTML="You Are Not Even Close.. enter a bit Smaller Integer to win.";
+                tries++;
+            }
+
+            document.getElementById('tries').innerHTML = tries;
+        }
+
+        function generate()
+        {
+         var result = Math.floor((Math.random() * 100) + 1);
+         document.getElementById("num").value=result;
+        }
+    </script>
+  </body>
+</html>
